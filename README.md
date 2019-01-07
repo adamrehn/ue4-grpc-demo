@@ -13,9 +13,7 @@ The code in this repository demonstrates running an Unreal Engine-powered micros
 
 ## Prerequisites
 
-General requirements:
-
-- Currently only Linux containers are supported (Windows container support will be added soon.)
+- Currently only Linux containers are supported (Windows container support will be added soon, although just for demonstration purposes since Linux containers are strongly recommended for running UE4 microservices.)
 - [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) 1.19.0 or newer
 - [ue4-docker](https://github.com/adamrehn/ue4-docker) 0.0.14 or newer
 
