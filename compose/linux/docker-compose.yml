@@ -1,0 +1,15 @@
+version: '3'
+services:
+  server:
+    image: ue4-grpc-demo/server:latest
+    build:
+      context: ../../server
+      dockerfile: linux.dockerfile
+    network_mode: "host"
+  client:
+    image: ue4-grpc-demo/client:latest
+    build:
+      context: ../../client
+      dockerfile: linux.dockerfile
+    depends_on:
+      - server

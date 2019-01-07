@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+//Represents an empty message, for RPC calls that don't take any arguments
+message Empty {}
+
+//Represents a three dimensional vector
+message Vector3D
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
+
+//Represents a transform in 3D space
+message Transform
+{
+	Vector3D position = 1;
+	Vector3D rotation = 2;
+	Vector3D scale = 3;
+}
+
+service CubePhysicsDemo
+{
+	//Resets the transform of the cube
+	rpc ResetCubeTransform (Empty) returns (Empty) {}
+	
+	//Retrieves the current transform of the cube
+	rpc GetCubeTransform (Empty) returns (Transform) {}
+	
+	//Applies force to the cube
+	rpc ApplyForceToCube (Vector3D) returns (Empty) {}
+}
