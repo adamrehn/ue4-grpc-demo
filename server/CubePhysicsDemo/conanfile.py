@@ -5,7 +5,7 @@ class CubePhysicsDemoConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "json"
     requires = (
-        "grpc-ue4/1.16.0@adamrehn/4.21"
+        "grpc-ue4/1.16.0@adamrehn/4.23"
     )
     
     def imports(self):

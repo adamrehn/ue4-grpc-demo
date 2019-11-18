@@ -15,15 +15,15 @@ The code in this repository demonstrates running an Unreal Engine-powered micros
 
 - Currently only Linux containers are supported (Windows container support will be added soon, although just for demonstration purposes since Linux containers are strongly recommended for running UE4 microservices.)
 - [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) 1.19.0 or newer
-- [ue4-docker](https://github.com/adamrehn/ue4-docker) 0.0.14 or newer
+- [ue4-docker](https://github.com/adamrehn/ue4-docker) 0.0.39 or newer
 
 
 ## Running the demo
 
-- Ensure you have built the Docker image `adamrehn/ue4-full:4.21.1` using [ue4-docker](https://github.com/adamrehn/ue4-docker) version 0.0.14 or newer. Assuming you have the package installed and the host system is configured correctly, you can build the image using the following command:
+- Ensure you have built the Docker image `adamrehn/ue4-full:4.23.1` using [ue4-docker](https://github.com/adamrehn/ue4-docker) version 0.0.39 or newer. Assuming you have the package installed and the host system is configured correctly, you can build the image using the following command:
   
   ```
-  ue4-docker build 4.21.1 --no-engine
+  ue4-docker build 4.23.1 --no-engine
   ```
 
 - Start the server in a terminal by running the `./start-server.sh` shell script. Docker will build and run the images for the demo. This may take some time. You will know everything is built and running when you see a line in the log output that looks like this:

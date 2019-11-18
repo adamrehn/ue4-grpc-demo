@@ -1,18 +1,20 @@
-FROM adamrehn/ue4-full:4.21.1
+FROM adamrehn/ue4-full:4.23.1-opengl as builder
 
 # Build the Conan packages for the demo's dependencies
-WORKDIR /home/ue4/ue4-conan-recipes
-RUN git pull
+RUN ue4 conan update
 RUN ue4 conan build grpc-ue4
 
-# Build the demo project and pre-fill the DDC
+# Package the demo project
 COPY --chown=ue4:ue4 CubePhysicsDemo /tmp/CubePhysicsDemo
 WORKDIR /tmp/CubePhysicsDemo
-RUN ue4 build
-RUN ue4 run -run=DerivedDataCache -fill -projectonly
+RUN ue4 package Development
+
+# Copy the packaged project to a runtime container
+FROM adamrehn/ue4-runtime:latest
+COPY --from=builder /tmp/CubePhysicsDemo/dist/LinuxNoEditor /home/ue4/CubePhysicsDemo
 
 # Expose the TCP port that the gRPC server will listen on
 EXPOSE 50051
 
 # Setup our entrypoint
-ENTRYPOINT ["ue4", "run", "-game", "-nullrhi", "-nosplash"]
+ENTRYPOINT ["/home/ue4/CubePhysicsDemo/CubePhysicsDemo.sh", "-nullrhi", "-nosplash"]

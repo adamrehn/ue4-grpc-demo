@@ -1,4 +1,4 @@
-FROM adamrehn/ue4-build-prerequisites:latest
+FROM adamrehn/ue4-build-prerequisites:opengl
 
 # Copy the client scripts
 COPY --chown=ue4:ue4 cube_demo.proto client.py requirements.txt /tmp/
