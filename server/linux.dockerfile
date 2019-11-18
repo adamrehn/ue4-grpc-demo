@@ -7,6 +7,7 @@ RUN ue4 conan build grpc-ue4
 # Package the demo project
 COPY --chown=ue4:ue4 CubePhysicsDemo /tmp/CubePhysicsDemo
 WORKDIR /tmp/CubePhysicsDemo
+RUN ue4 clean
 RUN ue4 package Development
 
 # Copy the packaged project to a runtime container
