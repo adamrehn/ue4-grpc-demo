@@ -4,10 +4,16 @@ FROM adamrehn/ue4-full:4.23.1-opengl as builder
 RUN ue4 conan update
 RUN ue4 conan build grpc-ue4
 
-# Package the demo project
+# Copy the demo project source code and perform a clean
 COPY --chown=ue4:ue4 CubePhysicsDemo /tmp/CubePhysicsDemo
 WORKDIR /tmp/CubePhysicsDemo
 RUN ue4 clean
+
+# Pre-generate our Protobuf and gRPC source files
+# (This ensures UBT will always detect them correctly regardless of UE4 version)
+RUN conan install . --profile ue4
+
+# Package the demo project
 RUN ue4 package Development
 
 # Copy the packaged project to a runtime container
